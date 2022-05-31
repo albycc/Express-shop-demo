@@ -1,14 +1,18 @@
 import express from 'express';
-import {products} from './admin.js'
+import {getIndex, getProducts, getCart, getOrders, getCheckout, getProductDetail} from '../controllers/products.js'
 
 const router = express.Router();
 
-router.get('/', (req, res, next) =>{
-    console.log('shop.js', products)
-    res.render('shop', {
-        pagetitle:'Homepage',
-        products
-    }) //send response
-})
+router.get('/', getIndex)
+
+router.get('/products', getProducts)
+
+router.get('/products/id', getProductDetail);
+
+router.get('/cart', getCart)
+
+router.get('/orders', getOrders)
+
+router.get('/checkout', getCheckout)
 
 export default router;

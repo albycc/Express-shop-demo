@@ -1,0 +1,27 @@
+<%- include('../partials/head') %>
+<%- include('../partials/header') %>
+<main>
+    <% if(products.length > 0){ %>
+        <div>
+            <% products.forEach(p => { %>
+                <article class="product-article">
+                    <h2><%= p.title %></h2>
+                    <img src="<%= p.imageUrl || '/img/missingCover.svg' %>" alt="<%= p.title %>">
+                    <div class="product-description">
+                        <p>£<%= p.price || 0 %></p>
+                        <p><%= p.description || 'No description' %></p>
+                    </div>
+                    <div>
+                        <form action="add-to-cart" method="post">
+                            <button>Add to Cart</button>
+                        </form>
+                    </div>
+                </article>
+            <% }) %>
+        </div>
+    <% }else{%>
+        <h1>No products here</h1>
+    <% } %>
+</main>
+<%- include('../partials/footer') %>
+<%- include('../partials/end') %>

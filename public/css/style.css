@@ -37,7 +37,31 @@ a.active{
     list-style-type: none;
 }
 
+.form-style > .form-list > li{
+    margin:15px 0px;
+}
+
+.form-style > .form-list > li > input,textarea{
+    max-width: 200px;
+    width:100%;
+}
+
 .form-style > .form-list > li > *{
     display: block;
+}
 
+.product-article{
+    margin:20px 15px;
+    border:1px solid lightgray;
+    max-width:210px;
+    width:100%;
+    padding:5px 10px;
+}
+
+.product-article > img{
+    width:100%;
+}
+
+.product-article > div{
+    margin:12px 0px;
 }

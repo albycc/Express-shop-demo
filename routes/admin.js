@@ -1,18 +1,15 @@
 import express from 'express';
-import path from 'path';
-import {dirname} from '../util/path.js'
 
 const router = express.Router();
 
-export const products = [];
+import {getAddProduct, getEditProduct, getProductsList, postAddProduct} from '../controllers/admin.js'
 
-router.get('/add-product', (req, res) =>{
-    res.sendFile(path.join(dirname(), 'views', 'add-product.html'))
-})
+router.get('/add-product', getAddProduct)
 
-router.post('/add-product', (req, res) =>{
-    products.push({title: req.body.title})
-    res.redirect('/')
-})
+router.get('/edit-product', getEditProduct)
+
+router.get('/products', getProductsList)
+
+router.post('/products', postAddProduct)
 
 export default router;
