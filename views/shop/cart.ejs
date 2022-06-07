@@ -1,7 +1,24 @@
 <%- include('../partials/head') %>
-<%- include('../partials/header') %>
-<main>
-    <h1>Cart</h1>
-</main>
-<%- include('../partials/footer') %>
+</head>
+<body>
+    <%- include('../partials/header') %>
+    <main>
+        <div>
+            <% if(products.length > 0){ %> 
+                <ul>
+                    <% products.forEach(p => { %> 
+                        <li>
+                            <p><%= p.productData.title %> (<%= p.qty %>)</p>
+                            <form action="/cart-delete-item" method="post">
+                                <input type="hidden" name="productId" value="<%= p.productData.id %>">
+                                <button class="btn" type="submit">Delete</button>
+                            </form>
+                        </li>
+                    <% }) %>
+                </ul>
+            <% } else { %>
+                <h1>No Products in Cart</h1>
+            <% } %>
+        </div>
+    </main>
 <%- include('../partials/end') %>

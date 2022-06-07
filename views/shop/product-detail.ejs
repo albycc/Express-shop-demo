@@ -1,7 +1,17 @@
 <%- include('../partials/head') %>
-<%- include('../partials/header') %>
-<main>
-    <h1>Product detail</h1>
-</main>
-<%- include('../partials/footer') %>
+</head>
+<body>
+    <%- include('../partials/header') %>
+    <main class="centered">
+        <h1><%= product.title %></h1>
+        <hr>
+        <div>
+            <img src="<%= product.imageUrl %>" alt="<%= product.title %>">
+        </div>
+        <div>
+            <h2><%= product.price %></h2>
+            <p><%= product.description %></p>
+        </div>
+        <%- include('../partials/add-to-cart.ejs', {product}) %>
+    </main>
 <%- include('../partials/end') %>
