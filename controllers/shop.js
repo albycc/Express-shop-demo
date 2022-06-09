@@ -11,24 +11,28 @@ const getIndex = (req, res) =>{
 }
 
 const getProducts = (req, res, next) =>{
-    Product.fetchAll(products => {
-        res.render('shop/product-list', {
-            pagetitle:'Products',
-            path: '/products',
-            products
-        }) //send response
-    })
+    Product.fetchAll()
+        .then(([rows, fieldData]) =>{
+            res.render('shop/product-list', {
+                pagetitle:'Products',
+                path: '/products',
+                products:rows
+            }) //send response
+        })
+        .catch(err => console.log(err));
 }
 
 const getProduct = (req, res, next) =>{
     const prodId = req.params.productId;
-    Product.findById(prodId, product =>{
-        res.render(`shop/product-detail`, {
-            product,
-            pagetitle:product.title,
-            path: '/products'
+    Product.findById(prodId)
+        .then(([product]) =>{
+            res.render(`shop/product-detail`, {
+                product:product[0],
+                pagetitle:product.title,
+                path: '/products'
+            })
         })
-    })
+        .catch(err => console.log(err));
 }
 
 const postAddToCart = (req, res, next) =>{
