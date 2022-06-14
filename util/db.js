@@ -1,10 +1,11 @@
-import mysql from 'mysql2'
+import { Sequelize } from "sequelize"
 
-const pool = mysql.createPool({
-    host:'localhost',
-    user:'root',
-    database:'node_schema',
-    password:'MSQ18dtb15dm'
-})
+const sequelize = new Sequelize(
+    'node_schema', 'root', 
+    'MSQ18dtb15dm', 
+    {
+        dialect: 'mysql',
+        host: 'localhost'
+    });
 
-export default pool.promise();
+export default sequelize;

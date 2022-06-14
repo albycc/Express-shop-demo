@@ -1,34 +1,26 @@
-import db from '../util/db.js'
-import Cart from './Cart.js'
+import { Sequelize, DataTypes } from "sequelize"
+import sequelize from "../util/db.js"
 
-class Product{
-    constructor(_id, _title, _imageUrl, _description, _price){
-        this.id = _id;
-        this.title = _title;
-        this.imageUrl = _imageUrl;
-        this.description = _description;
-        this.price = _price
+const Product = sequelize.define('product', {
+    id:{
+        type: DataTypes.INTEGER,
+        autoIncrement: true,
+        allowNull: false,
+        primaryKey: true
+    },
+    title: DataTypes.STRING,
+    price: {
+        type: DataTypes.DOUBLE,
+        allowNull: false
+    },
+    imageUrl:{
+        type: DataTypes.STRING,
+        allowNull:false
+    },
+    description:{
+        type:DataTypes.STRING,
+        allowNull:false
     }
-
-    save() {
-        return db.execute(
-            'INSERT INTO products (title, price, imageUrl, description) VALUES (?, ?, ?, ?) ',
-            [this.title, this.price, this.imageUrl, this.description]
-        );
-    }
-
-    static deleteById(id){
-    
-    }
-
-    static fetchAll(){
-        return db.execute('SELECT * FROM products')    
-    }
-
-    static findById(id){
-        return db.execute('SELECT * FROM products WHERE products.id = ?', [id])
-    }
-
-}
+})
 
 export default Product;
